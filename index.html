@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Historia clínica digital del paciente veterinario Jack. Seguimiento detallado de consultas, recetas, vacunas y desparasitación.">
+  <title>Historia Clínica Veterinaria - Jack</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div class="container">
+    
+    <!-- Dashboard de Jack -->
+    <header class="dashboard-header">
+      <div class="avatar-container">
+        <img src="jack_avatar.jpg" alt="Avatar de Jack" id="petAvatar">
+      </div>
+      <div class="pet-info">
+        <h1>Jack</h1>
+        <div class="pet-meta">
+          <div class="meta-badge" title="Especie y Raza">
+            <i class="fa-solid fa-dog"></i>
+            <span>Canino / Criollo</span>
+          </div>
+          <div class="meta-badge" title="Edad">
+            <i class="fa-solid fa-calendar-check"></i>
+            <span id="petAge">Cargando edad...</span>
+          </div>
+          <div class="meta-badge" title="Peso Actual">
+            <i class="fa-solid fa-weight-scale"></i>
+            <span id="petWeight">26.5 kg</span>
+          </div>
+          <div class="meta-badge" title="Propietaria">
+            <i class="fa-solid fa-user-shield"></i>
+            <span>Cristina Romero R.</span>
+          </div>
+        </div>
+        <p class="meta-badge" style="display:inline-flex; border-color: rgba(59, 130, 246, 0.3); background: rgba(59, 130, 246, 0.05); color: #9ec2ff;">
+          <i class="fa-solid fa-notes-medical" style="color: var(--accent-secondary);"></i>
+          <span><strong>Último Diagnóstico:</strong> Tratamiento por dermatitis alérgica crónica y control de peso</span>
+        </p>
+      </div>
+    </header>
+
+    <!-- Sección de Gráfica y Medicación Rápida -->
+    <section class="stats-grid">
+      <!-- Curva de peso -->
+      <div class="stats-card">
+        <h2><i class="fa-solid fa-chart-line"></i> Evolución del Peso</h2>
+        <div class="chart-wrapper">
+          <canvas id="weightChart"></canvas>
+        </div>
+      </div>
+      
+      <!-- Tratamientos Clave en Curso -->
+      <div class="stats-card treatment-status-card">
+        <h2><i class="fa-solid fa-circle-check"></i> Tratamiento en Curso</h2>
+        <div class="treatment-list">
+          <div class="treatment-item">
+            <div class="title">Cyclavance (1.4 ml / 24h)</div>
+            <div class="desc">Administrar vía oral por 60 días (Iniciar frío / sin comida).</div>
+          </div>
+          <div class="treatment-item" style="border-left-color: var(--accent-secondary);">
+            <div class="title">Cytopoint 40mg (Inyectable)</div>
+            <div class="desc">Aplicar cada 6-8 semanas para dermatitis. (Primera: 03-Jun-2026).</div>
+          </div>
+          <div class="treatment-item" style="border-left-color: var(--warning-color);">
+            <div class="title">Dieta Pro Plan OM Obesity</div>
+            <div class="desc">230g diarios repartidos en 2 porciones. Única fuente de comida.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Barra de Filtros y Búsqueda -->
+    <section class="filter-bar">
+      <div class="search-input-wrapper">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchInput" class="search-input" placeholder="Buscar medicamentos, síntomas, veterinarias, etc...">
+      </div>
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="Receta Médica">Recetas</button>
+        <button class="filter-btn" data-filter="Historial de Desparasitación">Desparasitación</button>
+        <button class="filter-btn" data-filter="Exámenes">Exámenes</button>
+      </div>
+    </section>
+
+    <!-- Timeline de Eventos Médicos -->
+    <main class="timeline" id="timelineContainer">
+      <!-- Los eventos se cargarán dinámicamente con JavaScript -->
+    </main>
+
+  </div>
+
+  <!-- Modal de Detalles del Documento -->
+  <div class="modal" id="detailModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title-wrapper">
+          <h3 id="modalTitle">Detalle del Registro</h3>
+          <p id="modalSubtitle">Fecha: --/--/---- | Archivo original: --</p>
+        </div>
+        <button class="modal-close" id="closeModalBtn" aria-label="Cerrar modal">&times;</button>
+      </div>
+      
+      <!-- Selector de Pestañas (Tabs) -->
+      <div class="modal-tabs">
+        <button class="modal-tab-btn active" data-tab="resumen">Resumen Clínico</button>
+        <button class="modal-tab-btn" data-tab="transcripcion">Transcripción Completa</button>
+      </div>
+      
+      <div class="modal-body">
+        <!-- Pestaña de Resumen -->
+        <div id="tabResumen" class="tab-pane active">
+          <div class="modal-section" id="secClinica">
+            <div class="modal-section-title"><i class="fa-solid fa-clinic-medical"></i> Clínica / Profesional</div>
+            <div class="modal-section-content" id="valClinica"></div>
+          </div>
+          
+          <div class="modal-section" id="secPaciente">
+            <div class="modal-section-title"><i class="fa-solid fa-paw"></i> Datos del Paciente en Consulta</div>
+            <div class="modal-section-content" id="valPaciente"></div>
+          </div>
+          
+          <div class="modal-section" id="secDiagnostico">
+            <div class="modal-section-title"><i class="fa-solid fa-stethoscope"></i> Diagnósticos y Síntomas</div>
+            <div class="modal-section-content" id="valDiagnostico"></div>
+          </div>
+          
+          <div class="modal-section" id="secTratamiento">
+            <div class="modal-section-title"><i class="fa-solid fa-pills"></i> Medicamentos y Tratamiento</div>
+            <div class="modal-section-content" id="valTratamiento"></div>
+          </div>
+          
+          <div class="modal-section" id="secResultados">
+            <div class="modal-section-title"><i class="fa-solid fa-vial"></i> Exámenes y Resultados</div>
+            <div class="modal-section-content" id="valResultados"></div>
+          </div>
+          
+          <div class="modal-section" id="secIndicaciones">
+            <div class="modal-section-title"><i class="fa-solid fa-circle-info"></i> Indicaciones Adicionales</div>
+            <div class="modal-section-content" id="valIndicaciones"></div>
+          </div>
+        </div>
+        
+        <!-- Pestaña de Transcripción Completa -->
+        <div id="tabTranscripcion" class="tab-pane">
+          <div class="modal-section">
+            <div class="modal-section-title"><i class="fa-solid fa-file-text"></i> Transcripción Literal Ocr</div>
+            <pre class="transcription-block" id="valTranscripcion"></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Enlazar Datos Consolidados -->
+  <script src="data.js"></script>
+  <!-- Enlazar Lógica Web -->
+  <script src="app.js"></script>
+</body>
+</html>
