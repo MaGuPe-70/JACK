@@ -17,13 +17,74 @@ const WEIGHT_HISTORY = [
   { date: "05/2026", weight: 26.4 }
 ];
 
+// Datos completos de la tabla de desparasitación (extraídos de 20260722_125048.md)
+const DEWORMING_HISTORY_FULL = [
+  { date: "09-05-2023", product: "Total F. Suspensión", weight: "4.1 kg", next: "—" },
+  { date: "27-05-2023", product: "Bravecto", weight: "5.8 kg", next: "—" },
+  { date: "15-08-2023", product: "Total F. P. Medianos", weight: "12.2 kg", next: "—" },
+  { date: "21-10-2023", product: "One", weight: "16.0 kg", next: "—" },
+  { date: "15-12-2023", product: "Meltra NF", weight: "18.5 kg", next: "—" },
+  { date: "19-03-2024", product: "Nexgard 15-30 kg", weight: "21.0 kg", next: "30-04-2024" },
+  { date: "25-04-2024", product: "Nexgard 15-30 kg", weight: "—", next: "25-05-2024" },
+  { date: "12-06-2024", product: "Nexgard Spectra", weight: "—", next: "—" },
+  { date: "13-07-2024", product: "Nexgard Spectra", weight: "—", next: "20-08-2024" },
+  { date: "29-10-2024", product: "Strantel", weight: "24.6 kg", next: "15-12-2024" },
+  { date: "29-10-2024", product: "Bravecto", weight: "—", next: "30-01-2025" },
+  { date: "15-12-2024", product: "Strantel", weight: "—", next: "15-01-2025" },
+  { date: "20-01-2025", product: "Meltra NF (20/01-27/01)", weight: "—", next: "—" },
+  { date: "20-01-2025", product: "Bravecto 20-40 kg", weight: "—", next: "20-04-2025" },
+  { date: "26-03-2025", product: "Meltra NF", weight: "—", next: "10-05-2025" },
+  { date: "21-07-2025", product: "Nexgard Spectra", weight: "26.0 kg", next: "21-08-2025" },
+  { date: "29-10-2025", product: "Nexgard Spectra 15-30 kg", weight: "25.5 kg", next: "29-11-2025" },
+  { date: "29-11-2025", product: "Nexgard Spectra 15-30 kg", weight: "—", next: "29-12-2025" },
+  { date: "29-12-2025", product: "Nexgard 25-50 kg", weight: "—", next: "01-02-2026" },
+  { date: "01-02-2026", product: "Nexgard 25-50 kg", weight: "26.7 kg", next: "09-03-2026" },
+  { date: "09-03-2026", product: "Nexgard 25-50 kg", weight: "26.4 kg", next: "—" },
+  { date: "16-04-2026", product: "Nexgard Spectra 15-30 kg", weight: "26.4 kg", next: "25-05-2026" },
+  { date: "25-05-2026", product: "Nexgorol 25-50 kg", weight: "26.4 kg", next: "02-07-2026" },
+  { date: "05-07-2026", product: "Nexgard 25-50 kg", weight: "—", next: "—" }
+];
+
 document.addEventListener("DOMContentLoaded", () => {
   calculateAge();
   initWeightChart();
+  renderDewormingTable();
   renderTimeline();
   setupFilters();
   setupModal();
 });
+
+function renderDewormingTable() {
+  const tbody = document.getElementById("dewormingTableBody");
+  if (!tbody) return;
+  
+  tbody.innerHTML = "";
+  
+  // Renderizar en orden cronológico descendente (las fechas más recientes primero)
+  const sorted = [...DEWORMING_HISTORY_FULL].reverse();
+  
+  sorted.forEach(item => {
+    const row = document.createElement("tr");
+    
+    const weightHtml = item.weight !== "—" 
+      ? `<span class="badge-weight">${item.weight}</span>` 
+      : `<span style="color: var(--text-secondary);">—</span>`;
+      
+    const nextHtml = item.next !== "—" 
+      ? `<span class="badge-next"><i class="fa-regular fa-clock"></i> ${item.next}</span>` 
+      : `<span style="color: var(--text-secondary);">—</span>`;
+      
+    row.innerHTML = `
+      <td><strong>${item.date}</strong></td>
+      <td><i class="fa-solid fa-capsules" style="color: var(--accent-color); margin-right: 0.3rem;"></i> ${item.product}</td>
+      <td>${weightHtml}</td>
+      <td>${nextHtml}</td>
+    `;
+    
+    tbody.appendChild(row);
+  });
+}
+
 
 // 2. Calcular la edad de Jack basada en su nacimiento (15 de Abril de 2023)
 function calculateAge() {

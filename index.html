@@ -82,6 +82,33 @@
       </div>
     </section>
 
+    <!-- Nueva Sección: Registro Completo de Desparasitación y Pesos -->
+    <section class="stats-card deworming-section">
+      <div class="deworming-header">
+        <h2><i class="fa-solid fa-table-list"></i> Historial Completo de Desparasitación y Pesos (2023 - 2026)</h2>
+        <span class="badge-count">24 Registros</span>
+      </div>
+      <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.2rem;">
+        Tabla cronológica detallada con todos los productos antiparasitarios, dosis, control de peso y fechas de las próximas aplicaciones.
+      </p>
+      
+      <div class="table-responsive">
+        <table class="custom-table" id="dewormingTable">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Producto / Desparasitante</th>
+              <th>Peso Registrado</th>
+              <th>Próxima Dosis / Control</th>
+            </tr>
+          </thead>
+          <tbody id="dewormingTableBody">
+            <!-- Cargado dinámicamente con JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
     <!-- Barra de Filtros y Búsqueda -->
     <section class="filter-bar">
       <div class="search-input-wrapper">

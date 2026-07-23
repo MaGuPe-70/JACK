@@ -643,3 +643,87 @@ body {
     align-items: stretch;
   }
 }
+
+/* Estilos de la Nueva Sección de Desparasitación */
+.deworming-section {
+  margin-bottom: 2rem;
+}
+
+.deworming-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.badge-count {
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--accent-color);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.custom-table th {
+  background: #161b22;
+  color: var(--accent-color);
+  font-family: var(--font-family-title);
+  font-weight: 600;
+  padding: 1rem;
+  border-bottom: 2px solid var(--card-border);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+}
+
+.custom-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  color: var(--text-primary);
+}
+
+.custom-table tbody tr {
+  transition: background var(--transition-speed);
+}
+
+.custom-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.custom-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.badge-weight {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.badge-next {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
