@@ -274,7 +274,11 @@ function renderTimeline() {
   const filteredHistory = parsedHistory.filter(doc => {
     // Filtro por tipo
     if (activeFilter !== "all") {
-      if (activeFilter === "Historial de Desparasitación") {
+      if (activeFilter === "Dermatitis") {
+        if (!doc.es_dermatologico) {
+          return false;
+        }
+      } else if (activeFilter === "Historial de Desparasitación") {
         if (!doc.tipo_documento.includes("Desparasitación") && !doc.tipo_documento.includes("Antiparasitario")) {
           return false;
         }

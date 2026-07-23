@@ -82,7 +82,48 @@
       </div>
     </section>
 
-    <!-- Nueva Sección: Registro Completo de Desparasitación y Pesos -->
+    <!-- Sección Especializada: Enfermedad Principal de Jack (Dermatitis Alérgica Crónica) -->
+    <section class="stats-card disease-section" style="border-left: 4px solid var(--accent-secondary); margin-bottom: 2rem;">
+      <div class="deworming-header">
+        <h2><i class="fa-solid fa-virus-slash" style="color: var(--accent-secondary);"></i> Enfermedad Principal: Dermatitis Alérgica Crónica / Atopía Canina</h2>
+        <span class="badge-count" style="background: rgba(59, 130, 246, 0.15); color: #60a5fa; border-color: rgba(59, 130, 246, 0.3);">Seguimiento Continuo</span>
+      </div>
+      <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem;">
+        La patología primaria de Jack corresponde a una <strong>enfermedad dermatológica crónica de manejo prolongado</strong>, caracterizada por hipersensibilidad alérgica cutánea, prurito (rascado), eritema en patas e ingle, y predisposición a otitis o sobrepeso secundario.
+      </p>
+
+      <!-- Grid de Resumen del Manejo de la Enfermedad -->
+      <div class="disease-grid">
+        <div class="disease-card">
+          <div class="disease-card-title"><i class="fa-solid fa-syringe" style="color: var(--accent-secondary);"></i> Inmunomoduladores y Biológicos</div>
+          <ul class="disease-list">
+            <li><strong>Cytopoint 40mg:</strong> Aplicación inyectable cada 6-8 semanas para el control del prurito (Primera: 03-Jun-2026).</li>
+            <li><strong>Cyclavance (Ciclosporina 100mg/ml):</strong> 1.4 ml vía oral cada 24 horas por 60 días (Dar en frío, 2 horas antes/después de comer).</li>
+            <li><strong>Apoquel 16mg:</strong> 1 tableta oral cada 24 horas (entre las 6:00 y 8:00 AM) posterior al ciclo de corticoides.</li>
+          </ul>
+        </div>
+
+        <div class="disease-card">
+          <div class="disease-card-title"><i class="fa-solid fa-pills" style="color: var(--warning-color);"></i> Corticoides y Terapia de Crisis</div>
+          <ul class="disease-list">
+            <li><strong>Prednisolona 20mg:</strong> Esquema decreciente (24h x 5d -> 48h x 5 tomas -> 72h x 5 tomas -> 96h x 5d).</li>
+            <li><strong>Cortavance Solución Tópica:</strong> Aplicar en patas, axilas e ingle cada 12h x 15 días (8:30 AM / 8:30 PM).</li>
+            <li><strong>Clobetasol Crema 0.05%:</strong> Aplicación localizada en patas, ingle y zona anal.</li>
+          </ul>
+        </div>
+
+        <div class="disease-card">
+          <div class="disease-card-title"><i class="fa-solid fa-bowl-food" style="color: var(--accent-color);"></i> Manejo Dietario e Higiene Cutánea</div>
+          <ul class="disease-list">
+            <li><strong>Alimentación Estricta:</strong> Pro Plan OM Obesity Management (230g/día) / Royal Canin Anallergenic (280g/día). Única fuente de alimento.</li>
+            <li><strong>Champú Magistral Hidratante:</strong> Baños terapéuticos 2 veces por mes para restaurar la barrera cutánea.</li>
+            <li><strong>Antisépticos Tópicos:</strong> Sanimicon® crema y Dermosyn® spray para prevención de piodermias secundarias.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección: Registro Completo de Desparasitación y Pesos -->
     <section class="stats-card deworming-section">
       <div class="deworming-header">
         <h2><i class="fa-solid fa-table-list"></i> Historial Completo de Desparasitación y Pesos (2023 - 2026)</h2>
@@ -117,6 +158,7 @@
       </div>
       <div class="filter-buttons">
         <button class="filter-btn active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="Dermatitis">Dermatitis & Alergias</button>
         <button class="filter-btn" data-filter="Receta Médica">Recetas</button>
         <button class="filter-btn" data-filter="Historial de Desparasitación">Desparasitación</button>
         <button class="filter-btn" data-filter="Exámenes">Exámenes</button>
